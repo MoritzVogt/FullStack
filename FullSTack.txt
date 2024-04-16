@@ -1,0 +1,30 @@
+FullSTack:
+
+Fullstack -> FrontEnd BackEnd Database 
+
+
+css grid layout:
+
+display:grid;
+.klasse{
+grid-template-rows : 30% 70%; oder 1/3;
+grid-template-columns: 50% 50%;
+}
+
+.navbar{
+grid-column-start: 1;
+grid-column-end: 3;
+}
+
+.side-left{
+
+}
+
+.side-right{
+
+}
+
+flexbox documentation: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+flex-shrink: schrumpft vergleichmäßig langsamer als andere behält es die eigene größe
+flex-grow: wächst schneller zu den anderen wenn mehr platz als benötigt zur verfügung steht

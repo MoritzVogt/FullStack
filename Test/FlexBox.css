@@ -1,0 +1,46 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: aliceblue;
+    max-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+div {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    text-align: center;
+    font-weight: 800;
+    width: 150px;
+    height: 150px;
+    background-color: aquamarine;
+    border-radius: 10%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 3s, width 3s, height 3s;
+}
+
+div:hover::before {
+    content: "\1F4A9";
+    font-size: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div:hover {
+    transform: scale(1.2) rotate(180deg);
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+div:nth-child(even) {
+    background-color: fuchsia;
+}
+
