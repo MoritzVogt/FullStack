@@ -1,19 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>FlexBox</title>
-    <!--<link rel="stylesheet" href="FlexBox.css">-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Todo List</title>
+  <!--Bootstrap cdn import-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #1a1a1a; /* Dark mode background */
+      color: #fff; /* Text color */
+    }
+    .container {
+      background-color: #333; /* Dark mode container background */
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1); /* Container shadow */
+      padding: 30px;
+    }
+    .container {
+      background: linear-gradient(to bottom, #4e176b, #357ded); /* Gradient background for todo list */
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .list-group-item {
+      color: white;
+      border: none;
+    }
+    .low-priority {
+        background-color: rgba(40, 167, 69, 0.3); /* Light green for low priority */
+    }
+    .medium-priority {
+      background-color: rgba(255, 193, 7, 0.5); /* Light orange for medium priority */
+    }
+    .high-priority {
+      background-color: rgba(220, 53, 69, 0.5); /* Light red for high priority */
+    }
+  </style>
 </head>
-<body class="app-body">
-<div class="container">
-    <div class="row">
-        <div class="col-md">
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Todo List</h1>
+    
+    <!-- Form to add new todo items -->
+    <form id="todoForm">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Your Name" id="nameInput" required>
+        <input type="text" class="form-control" placeholder="Task" id="taskInput" required>
+        <select class="form-select" id="priorityInput" required>
+          <option value="" disabled selected>Select Priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button class="btn btn-primary" type="submit">Add Task</button>
+      </div>
+    </form>
 
-        </div>
-    </div>
-</div>
+    <!-- Todo list -->
+    <ul class="list-group" id="todoList">
+      <!-- Todo items will be added here dynamically -->
+    </ul>
+  </div>
+
+  <script>
+    document.getElementById('todoForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      // Get the input values
+      var nameInput = document.getElementById('nameInput');
+      var taskInput = document.getElementById('taskInput');
+      var priorityInput = document.getElementById('priorityInput');
+      
+      var name = nameInput.value.trim();
+      var taskText = taskInput.value.trim();
+      var priority = priorityInput.value;
+
+      if (name !== '' && taskText !== '' && priority !== '') {
+        // Create new todo item
+        var li = document.createElement('li');
+        li.className = 'list-group-item';
+        li.textContent = '[' + priority.toUpperCase() + '] ' + name + ': ' + taskText;
+        // Assign priority class
+        switch (priority) {
+          case 'low':
+            li.classList.add('low-priority');
+            break;
+          case 'medium':
+            li.classList.add('medium-priority');
+            break;
+          case 'high':
+            li.classList.add('high-priority');
+            break;
+          default:
+            break;
+        }
+        // Add close button
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'btn btn-sm btn-danger float-end';
+        closeBtn.textContent = 'Delete';
+        closeBtn.onclick = function() {
+          li.remove();
+        };
+
+        li.appendChild(closeBtn);
+
+        // Add todo item to the list
+        document.getElementById('todoList').appendChild(li);
+
+        // Clear input fields
+        nameInput.value = '';
+        taskInput.value = '';
+        priorityInput.value = '';
+      } else {
+        alert('Please fill in all fields!');
+      }
+    });
+  </script>
 </body>
 </html>
