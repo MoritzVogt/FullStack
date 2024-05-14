@@ -28,3 +28,8 @@ flexbox documentation: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 flex-shrink: schrumpft vergleichmäßig langsamer als andere behält es die eigene größe
 flex-grow: wächst schneller zu den anderen wenn mehr platz als benötigt zur verfügung steht
+
+JavaScript:
+let -> nur innerhalb des scopes
+var -> auch außerhalb des scopes erreichbar
+const -> kann kein neuer wert zugewiesen werden -> auch nur innerhalb des scopes verfügbar
