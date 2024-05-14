@@ -4,6 +4,7 @@ const temp = document.querySelector(".temperature")
 var userInput = document.querySelector("#iUserInput");
 if (!userInput.value) {
     userInput.value = city;
+    setInterval(getWeather, 10000);
 }
 
 const img = document.querySelector("img")
@@ -23,11 +24,9 @@ async function getWeather(){
     const timeElapsed = Date.now()
 
     const today = new Date(data.dt * 1000)
-    currTime.innerHTML = today.toString();
+    currTime.innerText = today.toString();
 
 }
-
-setInterval(getWeather, 10000);
 
 document.getElementById("iUserInput").addEventListener('keydown', function (event) {
     if (event.key === "Enter" || event.keyCode === 13) {
