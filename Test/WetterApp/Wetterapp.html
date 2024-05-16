@@ -4,18 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="wetter.css">
 </head>
 <body>
     <div class="app">
         <div>
-            <h1>Das Wetter in <span class="city"><input id="iUserInput"></span></span></h1><span>press enter to start</span>
+            <span>press enter to start</span>
+            <h1>Das Wetter in <span class="city"><input id="iUserInput"></span></span></h1>
         </div>
         <div>
             Aktuelle Temperatur: <span class="temperature"></span>°C
-        </div>
+        </div><br>
         <div>
-            <img src="http://openweathermap.org/img/wn/04n@2x.png">
+            Gefühlt wie: <span id="feelslike"></span>°C
+        </div><br>
+        <div id="weatherIcon">
+            <img id="iWeatherImg" src="">
+            <span id="iWeatherDesc"></span>
         </div>
         <div>
             letze aktualisierung: <span class="time">...</span>

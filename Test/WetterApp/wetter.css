@@ -1,0 +1,7 @@
+#weatherIcon {
+    display: flex;
+}
+#iWeatherDesc {
+    order: -1; /* Bringt das Span-Element nach oben */
+    margin-bottom: 10px; /* Optional: Abstand zum Bild */
+}
