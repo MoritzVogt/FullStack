@@ -1,14 +1,36 @@
 import "./App.css";
 import TodoInput from "./Components/Input/TodoInput";
 import Todo from './Todo';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+import { initialTodos } from "./Data/todoData";
+
 function App() {
-  const [todos, setTodos] = useState([
-    { id: uuidv4(), task: "Einkaufen", completed: false },
-    { id: uuidv4(), task: "Laufen", completed: false }
-  ]);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("MyTodos");
+    console.log(savedTodos)
+    if (savedTodos) {
+      try {
+        return JSON.parse(savedTodos);
+      } catch (e) {
+        console.log(`Failed to parse todos from localstorage ${e}`);
+        return initialTodos;
+      }
+    } else {
+      return initialTodos;
+    }
+  });
+  //useEffect(()=>{
+  //  const storedTodos = localStorage.getItem('MyTodos');
+  //  if(storedTodos !== null) setTodos(JSON.parse(storedTodos));
+  //  console.log(storedTodos);
+  //},[])
+
+  useEffect(()=>{
+    localStorage.setItem('MyTodos',JSON.stringify(todos));
+  },[todos])
+
 
   const addTodo = (task) => {
     setTodos([...todos, { id: uuidv4(), task, completed: false }]);
